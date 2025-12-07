@@ -12,4 +12,4 @@ npm i
 
 ## .env-файл
 - Скопировать файл `.env.example` и переменовать его в `.env`
-- Для ключа VITE_API_KEY добавить значение из "Профиля" [Kinopoisk Api Unofficial](https://kinopoiskapiunofficial.tech/)
+- Для ключа `VITE_API_KEY` добавить значение из "Профиля" [Kinopoisk Api Unofficial](https://kinopoiskapiunofficial.tech/)
