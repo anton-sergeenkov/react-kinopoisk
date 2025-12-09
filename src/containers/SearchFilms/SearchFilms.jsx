@@ -20,6 +20,9 @@ const SearchFilms = () => {
 
   const onChange = e => setValue(e.target.value)
 
+  // TODO: Ui-компонент карточки фильма
+  // Передвать только необходимые поля
+  // Для FilmsList - kinopoiskId, для SearchFilms - filmId
   return (
     <div>
       <input type="text" placeholder='Поиск фильма' value={value} onChange={onChange} />
