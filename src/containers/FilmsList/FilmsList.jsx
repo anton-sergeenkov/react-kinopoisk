@@ -23,14 +23,14 @@ const FilmsList = () => {
     })()
   }, []);
 
-  const handleClick = async (id) => {
+  const onClick = async (id) => {
     setKinopoiskId(id)
   }
 
   return (
     <div className={styles.wrapper}>
       {data.length !== 0 && data.map(item => (
-        <div key={item.kinopoiskId} className={styles.item} onClick={() => handleClick(item.kinopoiskId)}>
+        <div key={item.kinopoiskId} className={styles.item} onClick={() => onClick(item.kinopoiskId)}>
           <img
             src={item.posterUrlPreview} 
             alt="Poster" 

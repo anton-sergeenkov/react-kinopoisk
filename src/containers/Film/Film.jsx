@@ -20,7 +20,7 @@ const Film = (props) => {
     })()
   }, [kinopoiskId]);
 
-  const handleClose = () => {
+  const onClose = () => {
     setData([])
     setKinopoiskId(null)
   }
@@ -38,7 +38,7 @@ const Film = (props) => {
             <div className={styles.content}>
               <h3 className={styles.header}>{data.nameRu}</h3>
               <div>{data.description}</div>
-              <button onClick={handleClose}>Закрыть</button>
+              <button onClick={onClose}>Закрыть</button>
             </div>
           </div>
         </div>

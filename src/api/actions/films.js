@@ -24,10 +24,7 @@ export const getList = async (params = {}) => {
   return data.items
 }
 
-// const params = {
-//   keyword: 'Тор'
-// }
-
+// params.keyword не должно быть пустым
 export const search = async (params = {}) => {
   const init = {
     method: 'GET',
