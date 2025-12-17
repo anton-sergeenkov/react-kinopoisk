@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getList as apiGetListFilms } from '../../api/actions/films'
 import Film from '../Film'
+import UiCard from '../../ui-kit/UiCard'
 
 import styles from './styles.module.css'
 
@@ -23,21 +24,23 @@ const FilmsList = () => {
     })()
   }, []);
 
-  const onClick = async (id) => {
+  const handleClick = async (id) => {
     setKinopoiskId(id)
   }
 
   return (
     <div className={styles.wrapper}>
       {data.length !== 0 && data.map(item => (
-        <div key={item.kinopoiskId} className={styles.item} onClick={() => onClick(item.kinopoiskId)}>
-          <img
-            src={item.posterUrlPreview} 
-            alt="Poster" 
-            className={styles.img}
-          />
-          <div className={styles.name}>{`${item.nameRu} (${item.year})`}</div>
-        </div>
+        <UiCard
+          key={item.kinopoiskId}
+          data={{
+            id: item.kinopoiskId,
+            poster: item.posterUrlPreview,
+            name: item.nameRu,
+            year: item.year
+          }}
+          onClick={handleClick}
+        />
       ))}
 
       <Film kinopoiskId={kinopoiskId} setKinopoiskId={setKinopoiskId} />

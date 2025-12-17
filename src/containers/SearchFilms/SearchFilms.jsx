@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
 import { search as apiSearchFilms } from '../../api/actions/films'
+import UiCard from '../../ui-kit/UiCard'
+import Film from '../Film'
 
 import styles from './styles.module.css'
 
 const SearchFilms = () => {
   const [data, setData] = useState([])
   const [value, setValue] = useState('')
+  const [kinopoiskId, setKinopoiskId] = useState(null)
 
   useEffect(() => {
     (async () => {
       const params = {
         keyword: value
       }
-
       const data = await apiSearchFilms(params)
       data && setData(data)
     })()
@@ -20,27 +22,32 @@ const SearchFilms = () => {
 
   const onChange = e => setValue(e.target.value)
 
-  // TODO: Ui-компонент карточки фильма
-  // Передвать только необходимые поля
-  // Для FilmsList - kinopoiskId, для SearchFilms - filmId
+  const handleClick = async (id) => {
+    setKinopoiskId(id)
+  }
+
   return (
     <div>
       <input type="text" placeholder='Поиск фильма' value={value} onChange={onChange} />
 
       <div className={styles.wrapper}>
         {data.length !== 0 ? data.map(item => (
-          <div key={item.filmId} className={styles.item}>
-            <img
-              src={item.posterUrlPreview} 
-              alt="Poster" 
-              className={styles.img}
-            />
-            <div className={styles.name}>{`${item.nameRu} (${item.year})`}</div>
-          </div>
+          <UiCard
+            key={item.filmId}
+            data={{
+              id: item.filmId,
+              poster: item.posterUrlPreview,
+              name: item.nameRu,
+              year: item.year
+            }}
+            onClick={handleClick}
+          />
         )) : (
           <h4>Не найдено</h4>
         )}
       </div>
+
+      <Film kinopoiskId={kinopoiskId} setKinopoiskId={setKinopoiskId} />
     </div>
   )
 }
