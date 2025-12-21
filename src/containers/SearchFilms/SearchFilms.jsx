@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
 import { search as apiSearchFilms } from '../../api/actions/films'
 import UiCard from '../../ui-kit/UiCard'
-import Film from '../Film'
+import { useNavigate } from "react-router"
 
 import styles from './styles.module.css'
 
 const SearchFilms = () => {
   const [data, setData] = useState([])
   const [value, setValue] = useState('')
-  const [kinopoiskId, setKinopoiskId] = useState(null)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     (async () => {
@@ -23,7 +24,7 @@ const SearchFilms = () => {
   const onChange = e => setValue(e.target.value)
 
   const handleClick = async (id) => {
-    setKinopoiskId(id)
+    navigate('/film/'+id)
   }
 
   return (
@@ -46,8 +47,6 @@ const SearchFilms = () => {
           <h4>Не найдено</h4>
         )}
       </div>
-
-      <Film kinopoiskId={kinopoiskId} setKinopoiskId={setKinopoiskId} />
     </div>
   )
 }

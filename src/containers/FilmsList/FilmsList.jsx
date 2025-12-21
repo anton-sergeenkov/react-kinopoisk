@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getList as apiGetListFilms } from '../../api/actions/films'
-import Film from '../Film'
 import UiCard from '../../ui-kit/UiCard'
+import { useNavigate } from "react-router"
 
 import styles from './styles.module.css'
 
@@ -15,7 +15,8 @@ const params = {
 
 const FilmsList = () => {
   const [data, setData] = useState([])
-  const [kinopoiskId, setKinopoiskId] = useState(null)
+
+  const navigate = useNavigate()
   
   useEffect(() => {
     (async () => {
@@ -25,7 +26,7 @@ const FilmsList = () => {
   }, []);
 
   const handleClick = async (id) => {
-    setKinopoiskId(id)
+    navigate('/film/'+id)
   }
 
   return (
@@ -42,8 +43,6 @@ const FilmsList = () => {
           onClick={handleClick}
         />
       ))}
-
-      <Film kinopoiskId={kinopoiskId} setKinopoiskId={setKinopoiskId} />
     </div>
   )
 }

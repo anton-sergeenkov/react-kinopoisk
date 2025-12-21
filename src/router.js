@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router";
 import App from './containers/App'
 import Home from './containers/Home'
 import FilmsList from './containers/FilmsList'
+import Film from './containers/Film'
 import SearchFilms from './containers/SearchFilms'
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "search",
         Component: SearchFilms,
+      },
+      {
+        path: "film/:id",
+        Component: Film,
       },
     ],
   },
